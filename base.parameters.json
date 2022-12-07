@@ -19,6 +19,36 @@
         },
         "Subnet2ip": {
             "value": "10.0.2.0/24"
+        },
+        "location": {
+            "value": "northeurope"
+        },
+        "resourceGroup": {
+            "value": "RM-TEST-FW-RG"
+        },
+        "azureFirewallName": {
+            "value": "Test-FW01"
+        },
+        "azureFirewallTier": {
+            "value": "Standard"
+        },
+        "vnetName": {
+            "value": "Test-FW-VN1"
+        },
+        "vnetAddressSpace": {
+            "value": "10.1.0.0/16"
+        },
+        "subnetAddressSpace": {
+            "value": "10.1.0.0/24"
+        },
+        "zones": {
+            "value": []
+        },
+        "publicIpAddressName": {
+            "value": "fw-pip"
+        },
+        "publicIpZones": {
+            "value": []
         }
     }
 }
