@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "routetablename": {
+            "type": "string",
+        },
+        "routename": {
+            "type": "string",
+        },
+        "nexthopip": {
+            "type": "string",
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+    "name": "[parameters('routetablename')]",
+    "type": "Microsoft.Network/routeTables",
+    "location": "northeurope",
+    "tags": {
+        "owner": "Robert Mitchell"
+    },
+    "properties": {
+        "disableBgpRoutePropagation": false,
+        "routes": [
+            {
+                "name": "[parameters('routename')]",
+                //"id": "/subscriptions/a7826b4d-0e55-4e8b-9b18-c53696348ed0/resourceGroups/RM-TEST-FW-RG/providers/Microsoft.Network/routeTables/Firewall-route/routes/fw-dg",
+                "id": "Microsoft.Network/routeTables/Firewall-route/routes/fw-dg",
+                "properties": {
+                    "addressPrefix": "0.0.0.0/0",
+                    "nextHopType": "VirtualAppliance",
+                    "nextHopIpAddress": "[parameters('nexthopip')]"
+                },
+                "type": "Microsoft.Network/routeTables/routes"
+            }
+        ],
+        "subnets": [
+            {
+                "id": "/subscriptions/a7826b4d-0e55-4e8b-9b18-c53696348ed0/resourceGroups/RM-TEST-FW-RG/providers/Microsoft.Network/virtualNetworks/Test-FW-VN/subnets/Workload-SN"
+            }
+        ]
+    }
+}
+    ],
+    "outputs": {}
+}
