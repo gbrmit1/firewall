@@ -19,7 +19,9 @@
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "subnetforroutetable": "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('vnetname'),parameters('subnet2name'))]"
+    },
     "resources": [
         {
     "name": "[parameters('routetablename')]",
@@ -45,7 +47,7 @@
         ],
         "subnets": [
             {
-                "id": "[reference(resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetname'), parameters('subnet2name')), '2020-11-01')]"   //"Microsoft.Network/virtualNetworks/Test-FW-VN/subnets/Workload-SN"
+                "id": "[reference(resourceId(variables('subnetforroutetable'), '2020-11-01'))]"   //"Microsoft.Network/virtualNetworks/Test-FW-VN/subnets/Workload-SN"
 
             }
         ]
