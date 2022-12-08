@@ -22,7 +22,7 @@
         },
         "Subnet2ip": {
             "type" : "string",
-        }
+        },
         "routetablename": {
             "type": "string",
         }
