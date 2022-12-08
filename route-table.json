@@ -20,7 +20,7 @@
     },
     "functions": [],
     "variables": {
-        "subnetforroutetable": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetname'), parameters('subnet2name'))]"
+        "subnetforroutetable": "[resourceId('RM-TEST-FW-RG','Microsoft.Network/virtualNetworks/subnets', parameters('vnetname'), parameters('subnet2name'))]"
     },
     "resources": [
         {
