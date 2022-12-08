@@ -96,6 +96,9 @@
             "dependsOn": [
             ],
             "properties": {
+                "dnsSettings": {
+                    "dnsServers": ["209.244.0.3"]
+                },
                 "ipConfigurations": [
                     {
                         "name": "ipconfig1",
