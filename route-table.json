@@ -10,6 +10,9 @@
         },
         "nexthopip": {
             "type": "string",
+        },
+        "nexthopip": {
+            "type": "string",
         }
     },
     "functions": [],
@@ -17,7 +20,7 @@
     "resources": [
         {
     "name": "[parameters('routetablename')]",
-    "apiVersion":"2022-05-01",
+    "apiVersion": "2022-05-01",
     "type": "Microsoft.Network/routeTables",
     "location": "northeurope",
     "tags": {
@@ -41,7 +44,7 @@
         ],
         "subnets": [
             {
-                "id": "/subscriptions/a7826b4d-0e55-4e8b-9b18-c53696348ed0/resourceGroups/RM-TEST-FW-RG/providers/Microsoft.Network/virtualNetworks/Test-FW-VN/subnets/Workload-SN"
+                "id": "Microsoft.Network/virtualNetworks/Test-FW-VN/subnets/Workload-SN"
             }
         ]
     }
