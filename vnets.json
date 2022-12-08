@@ -23,6 +23,9 @@
         "Subnet2ip": {
             "type" : "string",
         }
+        "routetablename": {
+            "type": "string",
+        }
     },
     "functions": [],
     "variables": {},
@@ -51,7 +54,10 @@
                     {
                         "name": "[parameters('subnet2name')]",
                         "properties": {
-                            "addressPrefix": "[parameters('Subnet2ip')]"
+                            "addressPrefix": "[parameters('Subnet2ip')]",
+                            "routeTable": {
+                                "id": "[resourceId('Microsoft.Network/routeTables',parameters('routetablename'))]"
+                            }
                         }
                     }
                 ]

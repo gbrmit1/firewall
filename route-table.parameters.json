@@ -10,12 +10,6 @@
         },
         "nexthopip": {
             "value": "10.0.1.4"
-        },
-        "vnetname": {
-            "value": "Test-FW-VN"
-        },
-        "subnet2name": {
-            "value": "Workload-SN"
         }
     }
 }

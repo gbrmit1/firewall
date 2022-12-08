@@ -10,18 +10,10 @@
         },
         "nexthopip": {
             "type": "string",
-        },
-        "vnetname": {
-            "type" : "string",
-        },
-        "subnet2name": {
-            "type" : "string",
         }
     },
     "functions": [],
-    "variables": {
-        "subnetforroutetable": "[resourceId('RM-TEST-FW-RG','Microsoft.Network/virtualNetworks/subnets', parameters('vnetname'), parameters('subnet2name'))]"
-    },
+    "variables": {},
     "resources": [
         {
     "name": "[parameters('routetablename')]",
@@ -43,12 +35,6 @@
                     "nextHopIpAddress": "[parameters('nexthopip')]"
                 }
                 
-            }
-        ],
-        "subnets": [
-            {
-                "id": "[reference(resourceId(variables('subnetforroutetable'), '2020-11-01'))]"   //"Microsoft.Network/virtualNetworks/Test-FW-VN/subnets/Workload-SN"
-
             }
         ]
     }
