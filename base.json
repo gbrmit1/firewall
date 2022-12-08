@@ -81,19 +81,6 @@
             }
         },
         {
-            "apiVersion": "2020-11-01",
-            "type": "Microsoft.Network/firewallPolicies",
-            "resources": [],
-            "properties": {
-                "sku": {
-                    "tier": "Standard"
-                }
-            },
-            "name": "fw-test-pol",
-            "location": "northeurope",
-            "tags": {}
-        },
-        {
             "apiVersion": "2020-05-01",
             "type": "Microsoft.Network/azureFirewalls",
             "name": "[parameters('azureFirewallName')]",
