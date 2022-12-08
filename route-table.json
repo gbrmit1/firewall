@@ -17,6 +17,7 @@
     "resources": [
         {
     "name": "[parameters('routetablename')]",
+    "apiVersion":"2022-05-01",
     "type": "Microsoft.Network/routeTables",
     "location": "northeurope",
     "tags": {
