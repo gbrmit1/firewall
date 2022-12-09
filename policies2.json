@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "value": "northeurope"
+            "type": "String"
         },
         "firewallPolicies_fw_test_pol_name": {
             "defaultValue": "fw-test-pol",
