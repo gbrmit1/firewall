@@ -8,11 +8,11 @@ New-AzResourceGroupDeployment `
 -TemplateUri https://raw.githubusercontent.com/gbrmit1/firewall/main/base.json `
 -TemplateParameterUri https://raw.githubusercontent.com/gbrmit1/firewall/main/base.parameters.json
 
-New-AzResourceGroupDeployment `
--Name 'RM-ARM-TEST-FW-Resource-Group' `
--ResourceGroupName $rg `
--TemplateUri https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.json `
--TemplateParameterUri https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.parameters.json
+#New-AzResourceGroupDeployment `
+#-Name 'RM-ARM-TEST-FW-Resource-Group' `
+#-ResourceGroupName $rg `
+#-TemplateUri https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.json `
+#-TemplateParameterUri https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.parameters.json
 
 #New-AzResourceGroupDeployment `
 #-Name 'RM-ARM-TEST-FW-Resource-Group' `

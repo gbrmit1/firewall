@@ -31,6 +31,9 @@
         },
         "publicIpZones": {
             "value": []
+        },
+        "firewallPolicies_fw_test_pol_name": {
+            "value": "fw-test-pol"
         }
     }
 }
