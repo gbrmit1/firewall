@@ -107,7 +107,7 @@
             "dependsOn": [
                 "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]",
                 "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
-                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/firewallPolicies', 'fw-test-pol')]"
+                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -218,7 +218,7 @@
                                 ],
                                 "sourceIpGroups": [],
                                 "destinationAddresses": [
-                                    "4.231.216.7"
+                                    "value": "[reference(resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName').publicIpAddress))]"
                                 ],
                                 "destinationPorts": [
                                     "3389"
