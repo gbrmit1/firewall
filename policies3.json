@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-         "vnetName": {
+        "vnetName": {
             "type": "string"
         },
         "publicIpAddressName": {
@@ -19,11 +19,10 @@
     "functions": [],
     "variables": {},
     "resources": [
-        
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
-            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultApplicationRuleCollectionGroup')]",
+            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultNetworkRuleCollectionGroup')]",
             "location": "northeurope",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
@@ -32,7 +31,7 @@
                 "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
-                "priority": 300,
+                "priority": 200,
                 "ruleCollections": [
                     {
                         "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
@@ -41,33 +40,27 @@
                         },
                         "rules": [
                             {
-                                "ruleType": "ApplicationRule",
-                                "name": "Allow-Google",
-                                "protocols": [
-                                    {
-                                        "protocolType": "Http",
-                                        "port": 80
-                                    },
-                                    {
-                                        "protocolType": "Https",
-                                        "port": 443
-                                    }
+                                "ruleType": "NetworkRule",
+                                "name": "Allow-DNS",
+                                "ipProtocols": [
+                                    "UDP"
                                 ],
-                                "fqdnTags": [],
-                                "webCategories": [],
-                                "targetFqdns": [
-                                    "www.google.com"
-                                ],
-                                "targetUrls": [],
-                                "terminateTLS": false,
                                 "sourceAddresses": [
                                     "10.0.2.0/24"
                                 ],
-                                "destinationAddresses": [],
-                                "sourceIpGroups": []
+                                "sourceIpGroups": [],
+                                "destinationAddresses": [
+                                    "209.244.0.3",
+                                    "209.244.0.4"
+                                ],
+                                "destinationIpGroups": [],
+                                "destinationFqdns": [],
+                                "destinationPorts": [
+                                    "53"
+                                ]
                             }
                         ],
-                        "name": "App-Coll01",
+                        "name": "Net-Coll01",
                         "priority": 200
                     }
                 ]
@@ -75,10 +68,7 @@
             "tags": {
                 "owner": "Robert Mitchell"
             }
-        },
-        //dnat rule here
-        //
-        
+        }
     ],
     "outputs": {}
 }

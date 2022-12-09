@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "firewallPolicies_fw_test_pol_name": {
+            "value": "fw-test-pol"
+        },
+        "azureFirewallName": {
+            "value": "Test-FW01"
+        },
+        "vnetName": {
+            "value": "Test-FW-VN1"
+        },
+        "publicIpAddressName": {
+            "value": "fw-pip"
+        }
+    }
+}

@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-         "vnetName": {
+        "vnetName": {
             "type": "string"
         },
         "publicIpAddressName": {
@@ -19,11 +19,10 @@
     "functions": [],
     "variables": {},
     "resources": [
-        
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
-            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultApplicationRuleCollectionGroup')]",
+            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultDnatRuleCollectionGroup')]",
             "location": "northeurope",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
@@ -32,42 +31,35 @@
                 "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
-                "priority": 300,
+                "priority": 100,
                 "ruleCollections": [
                     {
-                        "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
+                        "ruleCollectionType": "FirewallPolicyNatRuleCollection",
                         "action": {
-                            "type": "Allow"
+                            "type": "Dnat"
                         },
                         "rules": [
                             {
-                                "ruleType": "ApplicationRule",
-                                "name": "Allow-Google",
-                                "protocols": [
-                                    {
-                                        "protocolType": "Http",
-                                        "port": 80
-                                    },
-                                    {
-                                        "protocolType": "Https",
-                                        "port": 443
-                                    }
+                                "ruleType": "NatRule",
+                                "name": "rdp-nat",
+                                "translatedAddress": "10.0.2.4",
+                                "translatedPort": "3389",
+                                "ipProtocols": [
+                                    "TCP"
                                 ],
-                                "fqdnTags": [],
-                                "webCategories": [],
-                                "targetFqdns": [
-                                    "www.google.com"
-                                ],
-                                "targetUrls": [],
-                                "terminateTLS": false,
                                 "sourceAddresses": [
-                                    "10.0.2.0/24"
+                                    "*"
                                 ],
-                                "destinationAddresses": [],
-                                "sourceIpGroups": []
+                                "sourceIpGroups": [],
+                                "destinationAddresses": [
+                                    "[reference(resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))).ipAddress]"
+                                ],
+                                "destinationPorts": [
+                                    "3389"
+                                ]
                             }
                         ],
-                        "name": "App-Coll01",
+                        "name": "rdp",
                         "priority": 200
                     }
                 ]
@@ -76,8 +68,8 @@
                 "owner": "Robert Mitchell"
             }
         },
-        //dnat rule here
         //
+        // end dnat rule
         
     ],
     "outputs": {}
