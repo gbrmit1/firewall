@@ -55,7 +55,19 @@
                 "name": "Robert Mitchell"
             }
         },
-        
+        {
+            "apiVersion": "2020-11-01",
+            "type": "Microsoft.Network/firewallPolicies",
+            "resources": [],
+            "properties": {
+                "sku": {
+                    "tier": "Standard"
+                }
+            },
+            "name": "fw-test-pol",
+            "location": "northeurope",
+            "tags": {}
+        },
         {
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('vnetName')]",

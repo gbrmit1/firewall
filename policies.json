@@ -10,19 +10,7 @@
     "functions": [],
     "variables": {},
     "resources": [
-        {
-            "apiVersion": "2020-11-01",
-            "type": "Microsoft.Network/firewallPolicies",
-            "resources": [],
-            "properties": {
-                "sku": {
-                    "tier": "Standard"
-                }
-            },
-            "name": "fw-test-pol",
-            "location": "northeurope",
-            "tags": {}
-        },
+        
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
