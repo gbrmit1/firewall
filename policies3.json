@@ -2,6 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "value": "northeurope"
+        },
+        "resourceGroup": {
+            "value": "RM-TEST-FW-RG"
+        },
         "vnetName": {
             "type": "string"
         },
@@ -23,12 +29,12 @@
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultNetworkRuleCollectionGroup')]",
-            "location": "northeurope",
+            "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
-                "[resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
-                "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
+                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
+                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
+                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
                 "priority": 200,

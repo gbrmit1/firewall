@@ -2,6 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "location": {
+            "value": "northeurope"
+        },
+        "resourceGroup": {
+            "value": "RM-TEST-FW-RG"
+        },
         "firewallPolicies_fw_test_pol_name": {
             "value": "fw-test-pol"
         },
