@@ -44,7 +44,7 @@
     },
     "resources": [
         {
-            "apiVersion": "2020-08-01",
+            "apiVersion": "2022-01-01",
             "type": "Microsoft.Network/publicIpAddresses",
             "name": "[parameters('publicIpAddressName')]",
             "location": "[parameters('location')]",
@@ -127,115 +127,15 @@
                     "tier": "[parameters('azureFirewallTier')]"
                 },
                 "firewallPolicy": {
-                    "id": "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/firewallPolicies', 'fw-test-pol')]"
+                    "id": "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
                 }
             },
             "tags": {
                 "owner": "Robert Mitchell"
             }
-        },
-        //RULEs
-        {
-            "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
-            "apiVersion": "2022-05-01",
-            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultApplicationRuleCollectionGroup')]",
-            "location": "northeurope",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
-            ],
-            "properties": {
-                "priority": 300,
-                "ruleCollections": [
-                    {
-                        "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
-                        "action": {
-                            "type": "Allow"
-                        },
-                        "rules": [
-                            {
-                                "ruleType": "ApplicationRule",
-                                "name": "Allow-Google",
-                                "protocols": [
-                                    {
-                                        "protocolType": "Http",
-                                        "port": 80
-                                    },
-                                    {
-                                        "protocolType": "Https",
-                                        "port": 443
-                                    }
-                                ],
-                                "fqdnTags": [],
-                                "webCategories": [],
-                                "targetFqdns": [
-                                    "www.google.com"
-                                ],
-                                "targetUrls": [],
-                                "terminateTLS": false,
-                                "sourceAddresses": [
-                                    "10.0.2.0/24"
-                                ],
-                                "destinationAddresses": [],
-                                "sourceIpGroups": []
-                            }
-                        ],
-                        "name": "App-Coll01",
-                        "priority": 200
-                    }
-                ]
-            },
-            "tags": {
-                "owner": "Robert Mitchell"
-            }
-        },
-        //dnat rule here
-        {
-            "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
-            "apiVersion": "2022-05-01",
-            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultNetworkRuleCollectionGroup')]",
-            "location": "northeurope",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
-            ],
-            "properties": {
-                "priority": 200,
-                "ruleCollections": [
-                    {
-                        "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
-                        "action": {
-                            "type": "Allow"
-                        },
-                        "rules": [
-                            {
-                                "ruleType": "NetworkRule",
-                                "name": "Allow-DNS",
-                                "ipProtocols": [
-                                    "UDP"
-                                ],
-                                "sourceAddresses": [
-                                    "10.0.2.0/24"
-                                ],
-                                "sourceIpGroups": [],
-                                "destinationAddresses": [
-                                    "209.244.0.3",
-                                    "209.244.0.4"
-                                ],
-                                "destinationIpGroups": [],
-                                "destinationFqdns": [],
-                                "destinationPorts": [
-                                    "53"
-                                ]
-                            }
-                        ],
-                        "name": "Net-Coll01",
-                        "priority": 200
-                    }
-                ]
-            },
-            "tags": {
-                "owner": "Robert Mitchell"
-            }
         }
+        //RULEs
+        
     ],
     "outputs": {}
 }
