@@ -5,15 +5,6 @@
          "location": {
             "type": "string"
         },
-        "resourceGroup": {
-            "type": "string"
-        },
-        "publicIpAddressName": {
-            "type": "string"
-        },
-        "azureFirewallName": {
-            "type": "string"
-        },
         "firewallPolicies_fw_test_pol_name": {
             "defaultValue": "fw-test-pol",
             "type": "String"
@@ -28,11 +19,7 @@
             "apiVersion": "2022-05-01",
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultApplicationRuleCollectionGroup')]",
             "location": "[parameters('location')]",
-            "dependsOn": [
-                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
-                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
-                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
-            ],
+            "dependsOn": [],
             "properties": {
                 "priority": 300,
                 "ruleCollections": [
