@@ -2,6 +2,15 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+         "vnetName": {
+            "type": "string"
+        },
+        "publicIpAddressName": {
+            "type": "string"
+        },
+        "azureFirewallName": {
+            "type": "string"
+        },
         "firewallPolicies_fw_test_pol_name": {
             "defaultValue": "fw-test-pol",
             "type": "String"
@@ -17,7 +26,10 @@
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultApplicationRuleCollectionGroup')]",
             "location": "northeurope",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+                "[resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
+                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
+                "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
                 "priority": 300,
@@ -59,15 +71,23 @@
                         "priority": 200
                     }
                 ]
+            },
+            "tags": {
+                "owner": "Robert Mitchell"
             }
         },
+        //dnat rule here
+        //
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultDnatRuleCollectionGroup')]",
             "location": "northeurope",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+                "[resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
+                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
+                "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
                 "priority": 100,
@@ -91,7 +111,7 @@
                                 ],
                                 "sourceIpGroups": [],
                                 "destinationAddresses": [
-                                    "4.231.216.7"
+                                    "[reference(resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))).ipAddress]"
                                 ],
                                 "destinationPorts": [
                                     "3389"
@@ -102,15 +122,23 @@
                         "priority": 200
                     }
                 ]
+            },
+            "tags": {
+                "owner": "Robert Mitchell"
             }
         },
+        //
+        // end dnat rule
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultNetworkRuleCollectionGroup')]",
             "location": "northeurope",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+                "[resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
+                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
+                "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
                 "priority": 200,
@@ -146,6 +174,9 @@
                         "priority": 200
                     }
                 ]
+            },
+            "tags": {
+                "owner": "Robert Mitchell"
             }
         }
     ],
