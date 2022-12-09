@@ -143,7 +143,8 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
                 "[resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
+                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
+                "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
                 "priority": 300,
@@ -198,7 +199,10 @@
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultDnatRuleCollectionGroup')]",
             "location": "northeurope",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+                "[resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
+                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
+                "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
                 "priority": 100,
@@ -246,7 +250,10 @@
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultNetworkRuleCollectionGroup')]",
             "location": "northeurope",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
+                "[resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
+                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
+                "[resourceId('Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"
             ],
             "properties": {
                 "priority": 200,
