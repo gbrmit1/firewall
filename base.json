@@ -219,7 +219,7 @@
                                 "sourceIpGroups": [],
                                 "destinationAddresses": [
                                     //"value": "[reference(resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName').publicIpAddress))]"
-                                    "[reference(resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName').publicIpAddress))]"
+                                    "[reference(resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName').ipaddress))]"
                                 ],
                                 "destinationPorts": [
                                     "3389"
