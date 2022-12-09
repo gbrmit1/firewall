@@ -8,9 +8,6 @@
         "resourceGroup": {
             "type": "string"
         },
-        "vnetName": {
-            "type": "string"
-        },
         "publicIpAddressName": {
             "type": "string"
         },
@@ -32,7 +29,6 @@
             "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultApplicationRuleCollectionGroup')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('vnetName'))]",
                 "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))]",
                 "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]",
                 "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/azureFirewalls',parameters('azureFirewallName'))]"

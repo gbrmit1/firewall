@@ -14,9 +14,6 @@
         "azureFirewallName": {
             "value": "Test-FW01"
         },
-        "vnetName": {
-            "value": "Test-FW-VN1"
-        },
         "publicIpAddressName": {
             "value": "fw-pip"
         }
