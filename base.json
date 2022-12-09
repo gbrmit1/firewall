@@ -188,52 +188,7 @@
                 "owner": "Robert Mitchell"
             }
         },
-        {
-            "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
-            "apiVersion": "2022-05-01",
-            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultDnatRuleCollectionGroup')]",
-            "location": "northeurope",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/firewallPolicies', parameters('firewallPolicies_fw_test_pol_name'))]"
-            ],
-            "properties": {
-                "priority": 100,
-                "ruleCollections": [
-                    {
-                        "ruleCollectionType": "FirewallPolicyNatRuleCollection",
-                        "action": {
-                            "type": "Dnat"
-                        },
-                        "rules": [
-                            {
-                                "ruleType": "NatRule",
-                                "name": "rdp-nat",
-                                "translatedAddress": "10.0.2.4",
-                                "translatedPort": "3389",
-                                "ipProtocols": [
-                                    "TCP"
-                                ],
-                                "sourceAddresses": [
-                                    "*"
-                                ],
-                                "sourceIpGroups": [],
-                                "destinationAddresses": [
-                                    "[reference(resourceId('Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))).ipAddress]"
-                                ],
-                                "destinationPorts": [
-                                    "3389"
-                                ]
-                            }
-                        ],
-                        "name": "rdp",
-                        "priority": 200
-                    }
-                ]
-            },
-            "tags": {
-                "owner": "Robert Mitchell"
-            }
-        },
+        //dnat rule here
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
