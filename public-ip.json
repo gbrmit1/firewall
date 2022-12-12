@@ -56,5 +56,10 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "publiip1": {
+            "type": "string",
+            "value": "[reference(parameters('publicip1')).ipAddress]"
+        }
+    }
 }
