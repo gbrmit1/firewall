@@ -1,0 +1,68 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+            "baseLinkedName": {
+            "type": "string",
+            "defaultValue": "baseLinked"
+        },
+        "policiesLinked": {
+            "type": "string",
+            "defaultValue": "policies"
+        },
+        "policies2Linked": {
+            "type": "string",
+            "defaultValue": "policies2"
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parameters('baseLinkedName')]",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/base.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/base.parameters.json"
+                }
+            }
+        },
+        {
+            "name": "[parameters('policiesLinked')]",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.parameters.json"
+                }
+            }
+        },
+        {
+            "name": "[parameters('policies2Linked')]",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies2.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies2.parameters.json"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}

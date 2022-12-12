@@ -137,5 +137,10 @@
         //RULEs
         
     ],
-    "outputs": {}
+    "outputs": {
+        "publiip1": {
+            "type": "string",
+            "value": "[reference(parameters('publicIpAddressName')).ipAddress]"
+        }
+    }
 }
