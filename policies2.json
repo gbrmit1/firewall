@@ -44,7 +44,7 @@
                                 ],
                                 "sourceIpGroups": [],
                                 "destinationAddresses": [
-                                    "[reference(resourceId('/subscriptions/a7826b4d-0e55-4e8b-9b18-c53696348ed0/resourcegroups/RM-TEST-FW-RG/providers/Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))).ipAddress]"
+                                    "[reference(resourceId('/subscriptions/a7826b4d-0e55-4e8b-9b18-c53696348ed0/resourcegroups/RM-TEST-FW-RG/providers/Microsoft.Network/publicIpAddresses',parameters('publicIpAddressName'))).ipAddress, '2020-05-01']"
                                 ],
                                 "destinationPorts": [
                                     "3389"
