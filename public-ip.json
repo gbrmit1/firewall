@@ -49,7 +49,7 @@
                 "displayName": "[parameters('publicip1')]"
             },
             "properties": {
-                "publicIPAllocationMethod": "Dynamic",
+                "publicIPAllocationMethod": "Static",
                 "dnsSettings": {
                     "domainNameLabel": "dnsname1"
                 }
