@@ -44,7 +44,7 @@
                                 ],
                                 "sourceIpGroups": [],
                                 "destinationAddresses": [
-                                    "[reference(resourceId('Microsoft.Resources/deployments/baseLinked') 2022-01-01).outputs.publicip1]"
+                                    "[reference(resourceId('Microsoft.Resources/deployments','baseLinked')).outputs.publicip1]"
                                 ],
                                 "destinationPorts": [
                                     "3389"
