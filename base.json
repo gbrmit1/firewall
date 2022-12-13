@@ -141,8 +141,6 @@
         "publiip1": {
             "type": "string",
             "value": "[reference(parameters('publicIpAddressName')).ipAddress]"
-        },
-        "publiip2": "string",
-        "value": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIpAddressName')).ipAddress]"
+        }
     }
 }
