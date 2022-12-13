@@ -31,7 +31,7 @@
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",
-            "name": "'fwtestpol','/DefaultApplicationRuleCollectionGroup')",
+            "name": "fwtestpol",
             "location": "[parameters('location')]",
             "dependsOn": [],
             "properties": {
