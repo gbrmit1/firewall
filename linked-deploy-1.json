@@ -5,6 +5,10 @@
             "baseLinkedName": {
             "type": "string",
             "defaultValue": "baseLinked"
+        },
+        "policiesLinked": {
+            "type": "string",
+            "defaultValue": "policies"
         }
     },
     "functions": [],
@@ -24,9 +28,24 @@
                     "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/public-ip.parameters.json"
                 }
             }
+        },
+        {
+            "name": "[parameters('policiesLinked')]",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2021-04-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.parameters.json"
+                }
+            }
         }
     ],
     "outputs": {
-        
+
     }
 }
