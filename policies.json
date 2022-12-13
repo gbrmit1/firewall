@@ -13,7 +13,21 @@
     "functions": [],
     "variables": {},
     "resources": [
-        
+        {
+            "apiVersion": "2020-11-01",
+            "type": "Microsoft.Network/firewallPolicies",
+            "resources": [],
+            "properties": {
+                "sku": {
+                    "tier": "Standard"
+                }
+            },
+            "name": "[parameters('firewallPolicies_fw_test_pol_name')]",
+            "location": "[parameters('location')]",
+            "tags": {
+                "owner": "Robert Mitchell"
+            }
+        },
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
             "apiVersion": "2022-05-01",

@@ -39,9 +39,7 @@
         
     },
     "functions": [],
-    "variables": {
-        "networkApiVersion": "?api-version=2019-09-01"
-    },
+    "variables": {},
     "resources": [
         {
             "apiVersion": "2022-01-01",
