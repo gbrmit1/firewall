@@ -14,7 +14,9 @@
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+
+    },
     "resources": [
         {
             "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",

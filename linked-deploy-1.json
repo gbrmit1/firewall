@@ -47,21 +47,6 @@
                     "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies.parameters.json"
                 }
             }
-        },
-        {
-            "name": "[parameters('policies2Linked')]",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2021-04-01",
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies2.json",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parametersLink": {
-                    "uri": "https://raw.githubusercontent.com/gbrmit1/firewall/main/policies2.parameters.json"
-                }
-            }
         }
     ],
     "outputs": {}
