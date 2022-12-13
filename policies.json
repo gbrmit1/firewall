@@ -27,57 +27,6 @@
             "tags": {
                 "owner": "Robert Mitchell"
             }
-        },
-        {
-            "type": "Microsoft.Network/firewallPolicies/ruleCollectionGroups",
-            "apiVersion": "2022-05-01",
-            "name": "[concat(parameters('firewallPolicies_fw_test_pol_name'), '/DefaultApplicationRuleCollectionGroup')]",
-            "location": "[parameters('location')]",
-            "dependsOn": [],
-            "properties": {
-                "priority": 300,
-                "ruleCollections": [
-                    {
-                        "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
-                        "action": {
-                            "type": "Allow"
-                        },
-                        "rules": [
-                            {
-                                "ruleType": "ApplicationRule",
-                                "name": "Allow-Google",
-                                "protocols": [
-                                    {
-                                        "protocolType": "Http",
-                                        "port": 80
-                                    },
-                                    {
-                                        "protocolType": "Https",
-                                        "port": 443
-                                    }
-                                ],
-                                "fqdnTags": [],
-                                "webCategories": [],
-                                "targetFqdns": [
-                                    "www.google.com"
-                                ],
-                                "targetUrls": [],
-                                "terminateTLS": false,
-                                "sourceAddresses": [
-                                    "10.0.2.0/24"
-                                ],
-                                "destinationAddresses": [],
-                                "sourceIpGroups": []
-                            }
-                        ],
-                        "name": "App-Coll01",
-                        "priority": 200
-                    }
-                ]
-            },
-            "tags": {
-                "owner": "Robert Mitchell"
-            }
         }
         
     ],
